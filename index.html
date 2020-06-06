@@ -25,11 +25,13 @@
         <p>{{ presentation2(4,5) }}</p>
         <p>{{ presentation3() }}</p>
         <a v-bind:href="URLVuejs">Le site de Vue js</a>
-        <h2>Compteur : {{ compteur }}</h2>
+        <h2>Compteur : {{ compteur }}
+        </h2>
         <button v-on:click="augmente">Augmente</button>
         <button v-on:click="decremente">Décrémente</button><br>
         <canvas v-on:mousemove="coords"></canvas>
         <p>{{ x }} / {{ y }}</p>
+        <h3>{{ compteur ? 'Il est true' : 'Il est false'}}</h3>
 
         <div v-on:click.stop="foo">
             <p>lorem ipsum <button id="btn" v-on:click="foo">Clique moi</button>
@@ -43,6 +45,8 @@
             <input type="text" v-model="valeur">
             <p>{{ valeur }}</p>
         </p>
+
+        <p v-html="htmlBrut"> {{ htmlBrut</p>
     </div>
     
     <!-- development version, includes helpful console warnings -->
@@ -57,7 +61,8 @@
             compteur : 0,
             x : 0,
             y : 0,
-            valeur : ""
+            valeur : "",
+            htmlBrut : "Mon html"
         },
         methods : {
             presentation: function(){
