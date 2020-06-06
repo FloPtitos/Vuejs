@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue js playground</title>
+</head>
+<style>
+    canvas {
+        width: 300px;
+        height: 200px;
+        border: 1px solid #333;
+    }
+    #btn {
+        position: fixed;
+        top: 50px;
+        left: 300px;
+    }
+</style>
+<body>
+    <div id="mon-app">
+        <h1> Vue js hello world</h1>
+        <p>{{ txt }}</p>
+        <p>{{ presentation() }}</p>
+        <p>{{ presentation2(4,5) }}</p>
+        <p>{{ presentation3() }}</p>
+        <a v-bind:href="URLVuejs">Le site de Vue js</a>
+        <h2>Compteur : {{ compteur }}</h2>
+        <button v-on:click="augmente">Augmente</button>
+        <button v-on:click="decremente">Décrémente</button><br>
+        <canvas v-on:mousemove="coords"></canvas>
+        <p>{{ x }} / {{ y }}</p>
+
+        <div v-on:click.stop="foo">
+            <p>lorem ipsum <button id="btn" v-on:click="foo">Clique moi</button>
+            </p>
+            
+        </div>
+
+        <p>
+            <input type="text" v-on:keyup.enter="foo2">
+            <!-- https://vuejs.org/v2/guide/events.html#Key-Modifiers -->
+            <input type="text" v-model="valeur">
+            <p>{{ valeur }}</p>
+        </p>
+    </div>
+    
+    <!-- development version, includes helpful console warnings -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    new Vue({
+        el: '#mon-app',
+        data: {
+            txt: 'Hello world',
+            nb : 10,
+            URLVuejs : 'https://vuejs.org/',
+            compteur : 0,
+            x : 0,
+            y : 0,
+            valeur : ""
+        },
+        methods : {
+            presentation: function(){
+                return 'Bonjour, je suis Florentino'
+            },
+            presentation2: function(a,b){
+                return a+b + this.nb;
+            },
+            presentation3: function(){
+                return this.txt;
+            },
+            augmente: function(){
+                this.compteur++;
+            },
+            decremente: function(){
+                this.compteur--;
+            },
+            coords : function(e){
+                //console.log;
+                this.x = e.offsetX;
+                this.y = e.offsetY;
+            },
+            foo : function(){
+                console.log("Cliqué");
+            },
+            foo2 : function(e){
+                console.log("Tu as appuyé sur une touche");
+                console.log("Tu as écris " + this.valeur);
+                
+            }
+        }
+    })
+</script>
+</body>
+</html>
